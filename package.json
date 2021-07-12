@@ -4,7 +4,7 @@
   "description": "Simple webs document based with template container",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon -x \"node src/index.js --start --webroot webroot\""
+    "start": "nodemon -x \"node src/index.js --start --webroot webroot --baseUrl app\""
   },
   "author": "Tomás Cichero <martoxdlol@gmail.com>",
   "license": "ISC",
@@ -12,7 +12,10 @@
     "args-command-parser": "^1.2.4",
     "express": "^4.17.1",
     "fs-extra": "^10.0.0",
+    "glob": "^7.1.7",
+    "join-url": "^2.0.0",
     "node-html-parser": "^4.0.0",
+    "path-browserify": "^1.0.1",
     "valid-filename": "^3.1.0"
   }
 }

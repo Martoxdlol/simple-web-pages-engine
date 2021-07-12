@@ -5,14 +5,7 @@ const { isTemplateFileType, isDocumentType } = require('./util')
 class FileContent{
     constructor(webFile){
         this.webFile = webFile
-        if(isTemplateFileType(webFile.name)){
-            this.type = TYPE_TEMPLATE
-        }else if(isDocumentType(webFile.name)){
-            this.type = TYPE_DOCUMENT
-        }else{
-            this.type = TYPE_SYSTEM
-        }
-        if(this.type == TYPE_TEMPLATE) this.read()
+        if(webFile.type == TYPE_TEMPLATE) this.read()
     }
 
     async read(){
