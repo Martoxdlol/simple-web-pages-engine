@@ -1,3 +1,4 @@
+const { render } = require('./process_file')
 const { saferesolve, normalizePath, joinUrl, relativeUrl } = require('./util')
 
 function serveRenderFilesMiddleware(baseUrl, pagesManager){
@@ -5,7 +6,7 @@ function serveRenderFilesMiddleware(baseUrl, pagesManager){
         const relativePath = relativeUrl(baseUrl, req.url)
         const file = pagesManager.findPath(relativePath)
         if(file){
-            const content = await file.content()
+            const content = await render(await file.content(), pagesManager)
             res.end(content)
         }else{
             next()
