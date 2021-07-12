@@ -1,5 +1,6 @@
 const path = require('path')
 const validFilename = require('valid-filename')
+const { TYPE_DOCUMENT_FORMATS } = require('./constants')
 const SAMPLE_URL = 'http://sample_domain/'
 
 function safeResolve(base, target) {
@@ -40,9 +41,38 @@ function relativeUrl(base, url){
     return '/'+relativeUrlParts(base, url).join('/')
 }
 
+function getUrlDirPath(pathname){
+    const urlParts = relativeUrlParts(pathname)
+    if(urlParts.length == 0) return '../'
+    urlParts.pop()
+    return '/'+urlParts.join()
+}
+
+function nameAndExtension(filename){
+    const arr = filename.split('.')
+    if(arr.length == 1) return [ filename, '' ]
+    const ext = arr.pop()
+    return [ arr.join(), ext ]
+}
+
+function isTemplateFileType(filename){
+    const [ name, ext ] = nameAndExtension(filename)
+    if(name.substring(0,2) == '__' && name.substring(name.length-2, name.length) == '__'){
+        return true
+    }
+}
+
+function isDocumentType(filename){
+    const [ name, ext ] = nameAndExtension(filename)
+    return TYPE_DOCUMENT_FORMATS.has(ext)
+}
+
 exports.saferesolve = safeResolve
 exports.normalizePath = normalizePath
 exports.joinUrl = joinUrl
 exports.urlPathnameParts = urlPathnameParts
 exports.relativeUrlParts = relativeUrlParts
 exports.relativeUrl = relativeUrl
+exports.getUrlDirPath = getUrlDirPath
+exports.isTemplateFileType = isTemplateFileType
+exports.isDocumentType = isDocumentType
