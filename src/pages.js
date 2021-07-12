@@ -1,9 +1,9 @@
 const fs = require('fs-extra')
 const path = require('path')
 const { FileContent } = require('./file_content')
-const { saferesolve, normalizePath, joinUrl, urlPathnameParts } = require('./util')
+const { saferesolve, normalizePath, joinUrl, urlPathnameParts, isTemplateFileType } = require('./util')
 
-class PagesManager{
+class FileSystemManager{
     constructor(path){
         this.path = path
         this.readFiles()
@@ -15,7 +15,7 @@ class PagesManager{
             for(const f of fileList){
                 const fp = path.join(dir.path, f)
                 const stat = await fs.stat(fp)
-                if(stat.isFile()) dir.children.push(new WebFile(f, dir))
+                if(stat.isFile()) dir.children.push(new WebFile(f, dir, stat))
                 else {
                     const n = new WebDirectory(f, dir)
                     dir.children.push(n)
@@ -28,7 +28,6 @@ class PagesManager{
         await _readDirectory(baseWebDir)
         this.dir = baseWebDir
     }
-    
 
     findPath(p){
         const plist = urlPathnameParts(p)
@@ -39,15 +38,50 @@ class PagesManager{
             if(!parent) return null
             parent = parent.findDir(f)
         }
+        if(!parent) return null
         return parent.findFile(filename)
+    }
+
+    findPathUp(p){
+        const plist = urlPathnameParts(p)
+        if(plist.length == 0) return null
+        const filename = plist.pop()
+        let parent = this.dir
+        for(const f of plist){
+            if(!parent) return null
+            parent = parent.findDir(f)
+        }
+        while(parent){
+            const f = parent.findFile(filename)
+            if(f) return f
+            parent = parent.parent
+        }
+        return null
+    }
+
+    getFile(p){
+        return isTemplateFileType(p) ? this.findPathUp(p) : this.findPath(p)
+    }
+
+    async getFileContent(p){
+        try{
+            const file = this.getFile(p)
+            if(!file) return null
+            const content = await file.content()
+            if(!content) return null
+            return content
+        }catch(e){
+            return null
+        }
     }
 }
 
 class WebFile{
-    constructor(name, parent){
+    constructor(name, parent, stat){
         this.name = name
         this.parent = parent
         this.fileContent = new FileContent(this)
+        this.stat = stat
     }
 
     get path(){
@@ -91,6 +125,7 @@ class WebDirectory{
                 return child
             }
         }
+        return null
     }
 
     findFileUp(name){
@@ -102,4 +137,4 @@ class WebDirectory{
     }
 }
 
-exports.PagesManager = PagesManager
+exports.FileSystemManager = FileSystemManager
