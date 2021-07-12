@@ -1,21 +1,16 @@
-const TYPE_TEMPLATE = 'template'
-const TYPE_DOCUMENT = 'document'
-const TYPE_SYSTEM = 'system'
 const fs = require('fs-extra')
-
-const TYPE_DOCUMENT_FORMATS = ['md', 'html']
+const { TYPE_DOCUMENT, TYPE_TEMPLATE, TYPE_SYSTEM } = require('./constants')
+const { isTemplateFileType, isDocumentType } = require('./util')
 
 class FileContent{
     constructor(webFile){
         this.webFile = webFile
-        if(webFile.name.substring(0,2) == '__' && webFile.name.substring(webFile.name.length-2,webFile.name.length) == '__'){
+        if(isTemplateFileType(webFile.name)){
             this.type = TYPE_TEMPLATE
+        }else if(isDocumentType(webFile.name)){
+            this.type = TYPE_DOCUMENT
         }else{
-            const ext = webFile.name.split('.').pop().toLowerCase()
             this.type = TYPE_SYSTEM
-            for(const _ext of TYPE_DOCUMENT_FORMATS){
-                if(_ext == ext) this.type = TYPE_DOCUMENT
-            }
         }
         if(this.type == TYPE_TEMPLATE) this.read()
     }
