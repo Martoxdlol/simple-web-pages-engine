@@ -4,7 +4,7 @@ const express = require('express')
 const Router = express.Router
 const path = require('path')
 const { serveRenderFilesMiddleware, e404Middleware } = require('./middlewares')
-const { PagesManager } = require('./pages')
+const { FileSystemManager } = require('./pages')
 const { saferesolve, normalizePath, joinUrl, relativeUrl } = require('./util')
 
 
@@ -36,8 +36,8 @@ function main(options){
     const webrootAssetsPath = path.resolve(webroot, options.webrootAssets)
     const webrootAdminPath = path.resolve(webroot, options.webrootAdmin)
     
-    const mainPages = new PagesManager(webrootMainPath)
-    const adminPages = new PagesManager(webrootAdminPath)
+    const mainPages = new FileSystemManager(webrootMainPath)
+    const adminPages = new FileSystemManager(webrootAdminPath)
     app.use(express.static(webrootAssetsPath))
     
 
