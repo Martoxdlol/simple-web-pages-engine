@@ -1,0 +1,156 @@
+nav{
+  position: fixed!important;
+  background-color: white;
+  padding: 18px 8px;
+  transition: box-shadow 0.3s;
+  box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+nav a{
+  color: black!important;
+}
+
+header > section, header > section *{
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+}
+
+header > section > div > div{
+  width: 440px;
+  margin-top: 100px;
+  min-height: 300px;
+  padding: 20px;
+}
+
+header > section > div{
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  min-height: 120vh;
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-position: top 63px right;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+	background-image:
+	linear-gradient(to right, rgba(255, 255, 255, 1) 400px, rgba(255, 255, 255, 0.92) 490px, rgba(255, 255, 255, 0) 580px, rgba(255, 255, 255, 0)),
+  url("/images/landingt.jpg");
+  text-align: left;
+}
+
+main{
+  position: absolute;
+  top: 100vh;
+  min-height: 500px;
+  width: 100%;
+  background-color: white;
+}
+
+@media (min-width: 1322px) {
+  header > section > div{
+  	background-image:
+  	linear-gradient(to right, rgba(255, 255, 255, 1) 10px, rgba(255, 255, 255, 0.92) 80px, rgba(255, 255, 255, 0) 190px, rgba(255, 255, 255, 0)),
+    url("/images/landingt.jpg");
+    background-size: calc(100vw - 390px);
+  }
+}
+
+@media (min-width: 1620px) {
+  header > section > div{
+  	background-image:
+  	linear-gradient(to right, rgba(255, 255, 255, 1) 10px, rgba(255, 255, 255, 0.92) 80px, rgba(255, 255, 255, 0) 190px, rgba(255, 255, 255, 0)),
+    url("/images/landingt2.jpg");
+    background-size: calc(100vw - 390px);
+  }
+}
+
+@media (max-width: 1321px) {
+  header > section > div{
+    background-size: 100vw;
+  }
+}
+
+@media (max-width: 950px) {
+  header > section > div{
+  	background-size: cover;
+  	background-image:
+  	linear-gradient(to bottom, rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0) 130px, rgba(255, 255, 255, 0.92) 270px, rgba(255, 255, 255, 1) 350px, rgba(255, 255, 255, 1)),
+    url("/images/landingt.jpg");
+    background-size: 100%;
+    background-position: -160px 0px 0px 0px!important;
+    text-align: center;
+  }
+
+  header > section > div > div{
+    width: 100%;
+    margin-top: 120px;
+    margin-top: calc(30px + 20vw);
+  }
+}
+
+.blue-bar{
+  height: 150px;
+  background-color: #081534;
+}
+
+header h1{
+  text-align: center;
+}
+
+header .smalltitle{
+  font-size: 17px;
+  font-weight: 400;
+  color: #081534;
+}
+
+header .title{
+  line-height: 0.9em;
+  font-size: 51px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #133A7C;
+}
+
+header p{
+  padding: 20px 22px;
+}
+
+.action-btn{
+  display: inline-block;
+  padding: 10px 30px;
+  font-size: 26px;
+  border: 2px solid #47A8E5;
+  background-color: #47A8E5;
+  color: white;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+.action-btn:hover{
+  text-decoration: none;
+}
+
+.down-arrow{
+  position: absolute;
+  top: calc(100vh - 100px);
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.down-arrow svg{
+  height: 60px;
+  fill: #47A8E5;
+}

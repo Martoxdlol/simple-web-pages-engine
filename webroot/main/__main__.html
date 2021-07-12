@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" ${helmet.htmlAttributes.toString()}>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/master.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"> -->
+    <meta property="og:site_name" content="Escuela Técnica Henry Ford">
+    <meta property="og:image" content="assets/images/landing4.jpg">
+    <meta name="description" content="Especialización en electromecánica, pasantias en Ford Argentina, educación de exelencia">
+    <title><useprop prop="title" default="Escuela Secundaria Técnica Henry Ford"/></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header style="background-image: image('assets/images/banner.png');">
+      <include src="__nav__.html"></include>
+      <include useprops="true" src="__header__.html"></include>
+    </header>
+    <main>
+        <article class="container">
+            <children/>
+        </article>
+    </main>
+    <script src="assets/js/app.js" charset="utf-8"></script>
+    <include src="__footer__.html"></include>
+  </body>
+</html>
