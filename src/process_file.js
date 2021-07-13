@@ -7,6 +7,8 @@ const FILL_ATTRS_WITH_PROPS_ATTR_NAME = 'useprops'
 const REPLACE_ATTR_WITH_PROP_ATTR_NAME = 'attr_prop'
 const REPLACE_VALUE_WITH_PROP_TAG_NAME = 'useprop'
 
+// TODO: Transform relative urls of __name__ files
+
 function escapeHtml(text) {
     const map = {
       '&': '&amp;',
