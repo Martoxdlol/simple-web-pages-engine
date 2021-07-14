@@ -13,7 +13,7 @@ index.html
 </include>
 ```
 
-__template__.html
+__\_\_template\_\_.html__
 ```html
 <html>
   <include src="__head__.html" title="{{title}}">
@@ -27,7 +27,7 @@ __template__.html
 <html>
 ```
 
-__head__.html
+__\_\_head\_\_.html__
 ```html
 <head>
   <title>{{title}}</title>
