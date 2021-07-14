@@ -3,13 +3,15 @@
 
 ## Render
 
-Render file with initial data:
-Ex: Data: `{ 'document_title': "New document", 'content': 'Hi, h r u?\nEnd of document', 'date': '7-7-2021'}`
+Render document with data:
+Example data: `{ 'document_title': "New document", 'content': 'Hi, h r u?\nEnd of document', 'date': '7-7-2021'}`
 
-index.html
+__\_\_main\_\_.html__ file will be used as default for rendering any document
+
+__\_\_main\_\_.html__
 ```html
 <include src="__template__.html" date="{{date}}" title="{{document_title}}">
-
+  {{content}}
 </include>
 ```
 
